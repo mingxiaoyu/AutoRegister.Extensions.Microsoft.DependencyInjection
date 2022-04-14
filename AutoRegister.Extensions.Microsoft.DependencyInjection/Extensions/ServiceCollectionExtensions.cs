@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             foreach (var implementationType in implementationTypes)
             {
-                var attributes = implementationType.GetCustomAttributes<ServiceImplementationAttribute>();
+                var attributes = implementationType.GetCustomAttributes<ServiceImplementationAttribute>(false);
                 foreach (var attribute in attributes)
                 {
                     var interfaceType = attribute.InterfaceType ?? implementationType.AsType();
@@ -45,7 +45,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             foreach (var interfaceType in interfaceTypes)
             {
-                var attribute = interfaceType.GetCustomAttribute<ServiceInterfaceAttribute>();
+                var attribute = interfaceType.GetCustomAttribute<ServiceInterfaceAttribute>(false);
                 var types = assembliesToScan.GetImplementingTypesOf(interfaceType);
 
                 foreach (var type in types)
